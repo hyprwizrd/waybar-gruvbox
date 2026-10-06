@@ -14,10 +14,6 @@ A warm, minimal status bar built around the Gruvbox color palette. Designed for 
 * Managed with GNU Stow
 * Easy to install and customize
 
-## Preview
-
-*Add a screenshot of your desktop here.*
-
 ## Requirements
 
 * Linux
@@ -47,8 +43,3 @@ Restart Waybar to apply the configuration.
 ## Customization
 
 Edit the configuration and stylesheet under `waybar/.config/waybar/`.
-
-## License
-
-Choose a license if you want others to reuse and redistribute your configuration.
-
