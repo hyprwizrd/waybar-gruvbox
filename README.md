@@ -4,6 +4,8 @@
 
 A warm, minimal status bar built around the Gruvbox color palette. Designed for a clean Hyprland desktop with a focus on readable modules, consistent colors, and a distraction-free workflow.
 
+![Preview](screenshots/preview.png)
+
 ## Features
 
 * Gruvbox-inspired colors
