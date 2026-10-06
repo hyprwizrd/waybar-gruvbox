@@ -1,0 +1,259 @@
+/* ════════════════════════════════════════════════════════════
+   Flat docked Waybar — Gruvbox Dark Medium, square edges
+   Every module is a rectangular tile with a coloured underline.
+   ════════════════════════════════════════════════════════════ */
+
+@define-color bg0     #282828;
+@define-color bg1     #3c3836;
+@define-color bg2     #504945;
+@define-color bg3     #665c54;
+@define-color fg      #ebdbb2;
+@define-color fg4     #a89984;
+@define-color gray    #928374;
+@define-color red     #fb4934;
+@define-color green   #b8bb26;
+@define-color yellow  #fabd2f;
+@define-color blue    #83a598;
+@define-color purple  #d3869b;
+@define-color aqua    #8ec07c;
+@define-color orange  #fe8019;
+
+* {
+    border: none;
+    border-radius: 0;
+    min-height: 0;
+    box-shadow: none;
+    text-shadow: none;
+
+    font-family: "JetBrainsMono Nerd Font", "Symbols Nerd Font", monospace;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+window#waybar {
+    background: @bg0;
+    color: @fg;
+    border-bottom: 2px solid @bg2;
+}
+
+tooltip {
+    background: @bg0;
+    border: 2px solid @bg3;
+    border-radius: 0;
+    padding: 4px;
+}
+
+tooltip label {
+    color: @fg;
+    padding: 2px 6px;
+}
+
+/* ───────────── Shared tile style ───────────── */
+
+#custom-logo,
+#window,
+#clock,
+#tray,
+#cpu, #memory, #temperature,
+#backlight, #wireplumber, #bluetooth, #network,
+#battery, #custom-power-profile,
+#custom-notifications,
+#custom-power {
+    background: @bg1;
+    color: @fg;
+    margin: 0 1px 0 0;
+    padding: 0 12px;
+    border-bottom: 2px solid @bg3;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+#cpu:hover, #memory:hover, #temperature:hover,
+#backlight:hover, #wireplumber:hover, #bluetooth:hover, #network:hover,
+#battery:hover, #custom-power-profile:hover,
+#custom-notifications:hover,
+#clock:hover, #tray:hover {
+    background: @bg2;
+}
+
+/* ───────────── Logo ───────────── */
+
+#custom-logo {
+    background: @orange;
+    color: @bg0;
+    border-bottom-color: @orange;
+    padding: 0 14px;
+    font-size: 17px;
+}
+
+#custom-logo:hover {
+    background: @yellow;
+    border-bottom-color: @yellow;
+}
+
+/* ───────────── Workspaces ───────────── */
+
+#workspaces {
+    background: transparent;
+    margin: 0 1px 0 0;
+}
+
+#workspaces button {
+    all: unset;
+    min-width: 28px;
+    padding: 0 6px;
+    margin: 0 1px 0 0;
+    background: @bg1;
+    color: @gray;
+    border-bottom: 2px solid transparent;
+    font-size: 12px;
+    font-weight: 700;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+#workspaces button.empty {
+    color: @bg3;
+}
+
+#workspaces button:hover {
+    background: @bg2;
+    color: @fg;
+    border-bottom-color: @yellow;
+}
+
+#workspaces button.active {
+    background: @orange;
+    color: @bg0;
+    border-bottom-color: @orange;
+}
+
+#workspaces button.urgent {
+    background: @red;
+    color: @bg0;
+    border-bottom-color: @red;
+    animation: blink 1s steps(2) infinite alternate;
+}
+
+/* ───────────── Window title ───────────── */
+
+#window {
+    background: transparent;
+    color: @fg4;
+    font-weight: 500;
+    border-bottom-color: transparent;
+    padding: 0 14px;
+}
+
+window#waybar.empty #window {
+    background: transparent;
+}
+
+/* ───────────── Clock ───────────── */
+
+#clock {
+    padding: 0 22px;
+    color: @yellow;
+    font-weight: 700;
+    border-bottom-color: @yellow;
+}
+
+/* ───────────── Tray ───────────── */
+
+#tray {
+    border-bottom-color: @fg4;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+}
+
+/* ───────────── System stats ───────────── */
+
+#cpu          { color: @green;  border-bottom-color: @green; }
+#memory       { color: @orange; border-bottom-color: @orange; }
+#temperature  { color: @aqua;   border-bottom-color: @aqua; }
+
+#temperature.critical {
+    background: @red;
+    color: @bg0;
+    border-bottom-color: @red;
+    animation: blink 1s steps(2) infinite alternate;
+}
+
+/* ───────────── Hardware ───────────── */
+
+#backlight    { color: @yellow; border-bottom-color: @yellow; }
+
+#wireplumber  { color: @blue;   border-bottom-color: @blue; }
+#wireplumber.muted { color: @gray; border-bottom-color: @bg3; }
+
+#bluetooth    { color: @blue;   border-bottom-color: @blue; }
+#bluetooth.connected { color: @green; border-bottom-color: @green; }
+#bluetooth.off,
+#bluetooth.disabled  { color: @gray; border-bottom-color: @bg3; }
+
+#network      { color: @aqua;   border-bottom-color: @aqua; }
+#network.disconnected { color: @red; border-bottom-color: @red; }
+
+/* ───────────── Battery / profile ───────────── */
+
+#battery           { color: @green; border-bottom-color: @green; }
+#battery.charging,
+#battery.plugged   { color: @aqua;  border-bottom-color: @aqua; }
+#battery.warning:not(.charging) {
+    color: @yellow;
+    border-bottom-color: @yellow;
+}
+#battery.critical:not(.charging) {
+    background: @red;
+    color: @bg0;
+    border-bottom-color: @red;
+    animation: blink 1s steps(2) infinite alternate;
+}
+
+#custom-power-profile { color: @yellow; border-bottom-color: @yellow; }
+#custom-power-profile.performance { color: @orange; border-bottom-color: @orange; }
+#custom-power-profile.balanced    { color: @green;  border-bottom-color: @green; }
+#custom-power-profile.power-saver { color: @blue;   border-bottom-color: @blue; }
+#custom-power-profile.unknown     { color: @gray;   border-bottom-color: @bg3; }
+
+/* ───────────── Notifications / power ───────────── */
+
+#custom-notifications {
+    color: @purple;
+    border-bottom-color: @purple;
+    padding: 0 14px;
+}
+
+#custom-notifications.pending {
+    color: @orange;
+    border-bottom-color: @orange;
+}
+
+#custom-notifications.dnd {
+    color: @gray;
+    border-bottom-color: @bg3;
+}
+
+#custom-power {
+    margin: 0;
+    padding: 0 16px;
+    background: @red;
+    color: @bg0;
+    border-bottom-color: @red;
+}
+
+#custom-power:hover {
+    background: @fg;
+    color: @red;
+    border-bottom-color: @fg;
+}
+
+/* ───────────── Animation ───────────── */
+
+@keyframes blink {
+    to { opacity: 0.55; }
+}
